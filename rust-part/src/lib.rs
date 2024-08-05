@@ -3,14 +3,15 @@ use std::ffi::{c_char, CStr};
 use data_structure::vec_wrapper::VecWrapper;
 
 mod data_structure;
+mod ex_structs;
 
 #[no_mangle]
-pub fn test_hello() {
+pub extern "C" fn test_hello() {
     println!("Hello, from Rust!")
 }
 
 #[no_mangle]
-pub fn print_strings(strings: &VecWrapper<*const c_char>) {
+pub extern "C" fn print_strings(strings: &VecWrapper<*const c_char>) {
     let string_vec: Vec<String> = strings
         .to_vec()
         .iter()

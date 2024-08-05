@@ -11,4 +11,20 @@ namespace ffi {
 
 struct Expr;
 
+template<typename T>
+struct VecWrapper
+{
+    const T *data;
+    size_t len;
+    size_t capacity;
+};
+
+extern "C" {
+
+void test_hello();
+
+void print_strings(const VecWrapper<const char*> *strings);
+
+} // extern "C"
+
 } // namespace ffi

@@ -6,6 +6,9 @@ const CONFIG_FILE_PATH: &str = "./cbindgen.toml";
 const GENERATED_HDR_PATH: &str = "../include/bindings.h";
 
 fn main() {
+    println!("cargo:rerun-if-changed=src/lib.rs");
+    println!("cargo:rerun-if-changed=build.rs");
+
     let crate_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
 
     let config =
@@ -19,10 +22,14 @@ fn main() {
         .expect("Unable to generate bindings")
         .write_to_file(GENERATED_HDR_PATH);
 
-    add_forward_decl(root_namespace).expect("adding forward declarations for structures failed.");
-
-    println!("cargo:rerun-if-changed=src/lib.rs");
-    println!("cargo:rerun-if-changed=build.rs");
+    let result = add_forward_decl(root_namespace);
+    match result {
+        Ok(_) => (),
+        Err(err_msg) => println!(
+            "adding forward declarations for structures failed: {}",
+            err_msg
+        ),
+    }
 }
 
 fn add_forward_decl(root_namespace: Option<String>) -> Result<(), String> {

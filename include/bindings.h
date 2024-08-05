@@ -22,12 +22,12 @@ struct VecWrapper
 
 struct StructB
 {
-    const StructA *_structA;
+    const StructA *_struct_a;
 };
 
 struct StructA
 {
-    const StructB *_structB;
+    const StructB *_struct_b;
 };
 
 extern "C" {

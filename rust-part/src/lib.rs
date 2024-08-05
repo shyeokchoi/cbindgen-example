@@ -24,9 +24,7 @@ pub extern "C" fn print_strings(strings: &VecWrapper<*const c_char>) {
         })
         .collect();
 
-    for string in string_vec {
-        println!("{string}")
-    }
+    println!("{}", string_vec.join(" "))
 }
 
 #[no_mangle]

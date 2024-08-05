@@ -4,8 +4,6 @@ project(
   VERSION 0.1.0
   LANGUAGES CXX)
 
-add_executable(cbindgen-example main.cpp)
-
 set(RUST_DIRECTORY "${CMAKE_SOURCE_DIR}/rust-part")
 set(GENERATED_HDR_LOCATION "${CMAKE_BINARY_DIR}/include")
 set(GENERATED_HDR_PATH "${GENERATED_HDR_LOCATION}/bindings.h")
@@ -34,11 +32,10 @@ add_custom_target(
 set(RUST_LIB "${RUST_DIRECTORY}/target/release/librust_part.a")
 
 # Add the C++ main file
-add_executable(cbindgen-delta-rs main.cpp)
+add_executable(cbindgen-example main.cpp)
 
 # Include the generated header files
-target_include_directories(cbindgen-delta-rs
-                           PRIVATE ${CMAKE_BINARY_DIR}/include)
+target_include_directories(cbindgen-example PRIVATE ${CMAKE_BINARY_DIR}/include)
 
-# Link the Rust library add_dependencies(cbindgen-delta-rs generate_header)
-target_link_libraries(cbindgen-delta-rs ${RUST_LIB})
+# Link the Rust library add_dependencies
+target_link_libraries(cbindgen-example ${RUST_LIB})

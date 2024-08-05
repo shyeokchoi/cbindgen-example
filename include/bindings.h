@@ -9,7 +9,7 @@
 
 namespace ffi {
 
-struct Expr;
+struct StructB;
 
 template<typename T>
 struct VecWrapper

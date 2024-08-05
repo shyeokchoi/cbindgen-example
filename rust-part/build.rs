@@ -36,9 +36,7 @@ fn add_forward_decl(root_namespace: Option<String>) -> Result<(), String> {
     if let Some(namespace) = root_namespace {
         let target = format!("namespace {} {{\n", namespace);
 
-        println!("{target}");
-
-        let declarations_to_forward = ["struct Expr;"];
+        let declarations_to_forward = ["struct StructB;"];
         let concatenated_declarations = declarations_to_forward.concat();
 
         let contents = std::fs::read_to_string(GENERATED_HDR_PATH)

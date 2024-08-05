@@ -1,9 +1,9 @@
-pub mod ex_structs {
-    struct StructA {
-        pub structB: *const StructB,
-    }
+#[repr(C)]
+pub struct StructA {
+    _structB: *const StructB,
+}
 
-    struct StructB {
-        _dummy: u8,
-    }
+#[repr(C)]
+pub struct StructB {
+    _structA: *const StructA,
 }

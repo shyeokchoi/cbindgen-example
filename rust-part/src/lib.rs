@@ -1,6 +1,7 @@
 use std::ffi::{c_char, CStr};
 
 use data_structure::vec_wrapper::VecWrapper;
+use ex_structs::{StructA, StructB};
 
 mod data_structure;
 mod ex_structs;
@@ -26,4 +27,11 @@ pub extern "C" fn print_strings(strings: &VecWrapper<*const c_char>) {
     for string in string_vec {
         println!("{string}")
     }
+}
+
+#[no_mangle]
+// A dummy function to make cbindgen generate C representation of StructA, Struct B
+pub extern "C" fn _dummy(_a: &StructA, _b: &StructB) {
+    // it's a dummy function, don't call this function.
+    panic!("This function shouldn't be called.")
 }

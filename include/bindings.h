@@ -9,6 +9,7 @@
 
 namespace ffi {
 
+struct StructA;
 struct StructB;
 
 template<typename T>
@@ -19,11 +20,23 @@ struct VecWrapper
     size_t capacity;
 };
 
+struct StructB
+{
+    const StructA *_structA;
+};
+
+struct StructA
+{
+    const StructB *_structB;
+};
+
 extern "C" {
 
 void test_hello();
 
 void print_strings(const VecWrapper<const char*> *strings);
+
+void _dummy(const StructA *a, const StructB *b);
 
 } // extern "C"
 

@@ -36,8 +36,8 @@ fn add_forward_decl(root_namespace: Option<String>) -> Result<(), String> {
     if let Some(namespace) = root_namespace {
         let target = format!("namespace {} {{\n", namespace);
 
-        let declarations_to_forward = ["struct StructB;"];
-        let concatenated_declarations = declarations_to_forward.concat();
+        let declarations_to_forward = ["struct StructA;", "struct StructB;"];
+        let concatenated_declarations = declarations_to_forward.join("\n");
 
         let contents = std::fs::read_to_string(GENERATED_HDR_PATH)
             .map_err(|e| format!("failed to read generated header file: {}", e.to_string()))?;
@@ -53,8 +53,8 @@ fn add_forward_decl(root_namespace: Option<String>) -> Result<(), String> {
             suffix.to_string()
         );
 
-        let _ = std::fs::write(GENERATED_HDR_PATH, content_after_insertion)
-            .map_err(|e| format!("failed to write modified file: {}", e.to_string()))?;
+        std::fs::write(GENERATED_HDR_PATH, content_after_insertion)
+            .map_err(|e| format!("failed to write modified file: {}", e.to_string()))?
     }
     Ok(())
 }

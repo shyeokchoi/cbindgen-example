@@ -1,9 +1,9 @@
 #[repr(C)]
 pub struct StructA {
-    _structB: *const StructB,
+    _struct_b: *const StructB,
 }
 
 #[repr(C)]
 pub struct StructB {
-    _structA: *const StructA,
+    _struct_a: *const StructA,
 }

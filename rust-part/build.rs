@@ -11,7 +11,7 @@ fn main() {
 
     let crate_dir = env::var("CARGO_MANIFEST_DIR").unwrap();
 
-    let config =
+    let config: cbindgen::Config =
         cbindgen::Config::from_file(CONFIG_FILE_PATH).expect("couldn't read cbindgen.toml");
     let root_namespace = config.namespace.clone();
 

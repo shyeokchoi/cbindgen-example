@@ -19,7 +19,7 @@ You can explore the CMakeLists.txt file in the root of the repository to see how
 3. Link the generated static library to create an executable.  
 
 ## Manipulating the generated header to avoid compile error
-Since `cbindgen` doesn't currently add forward declarations, you might encounter compile errors as your header file become larger and more complex.  
+Since `cbindgen` doesn't currently add forward declarations, you might encounter compile errors as your header file becomes larger and more complex.  
 To address this issue, you can find a workaround example, at `rust-part/build.rs`.  
 
 # How to Run

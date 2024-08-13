@@ -12,5 +12,5 @@ int main()
         .len = strings.size(),
         .capacity = strings.capacity()
     };
-    ffi::print_strings(&strings_wrapped);
+    ffi::print_strings(strings_wrapped);
 }

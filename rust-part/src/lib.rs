@@ -12,7 +12,13 @@ pub extern "C" fn test_hello() {
 }
 
 #[no_mangle]
-pub extern "C" fn print_strings(strings: &VecWrapper<*const c_char>) {
+pub extern "C" fn print_strings(strings: *const VecWrapper<*const c_char>) {
+    if strings == std::ptr::null() {
+        println!("Null pointer");
+        return;
+    }
+    let strings = unsafe { &*(strings as *mut VecWrapper<*const c_char>) };
+
     let string_vec: Vec<String> = strings
         .to_vec()
         .iter()

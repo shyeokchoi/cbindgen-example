@@ -12,7 +12,22 @@ pub extern "C" fn test_hello() {
 }
 
 #[no_mangle]
-pub extern "C" fn print_strings(strings: VecWrapper<*const c_char>) {
+pub extern "C" fn print_strings_from_value(strings: VecWrapper<*const c_char>) {
+    print!("from value: ");
+    print_string_vec(&strings);
+}
+
+#[no_mangle]
+pub extern "C" fn print_strings_from_pointer(strings: *const VecWrapper<*const c_char>) {
+    if strings == std::ptr::null() {
+        println!("Null pointer");
+        return;
+    }
+    print!("from pointer: ");
+    unsafe { print_string_vec(&*(strings as *mut VecWrapper<*const c_char>)) }
+}
+
+fn print_string_vec(strings: &VecWrapper<*const c_char>) {
     let string_vec: Vec<String> = strings
         .to_vec()
         .iter()

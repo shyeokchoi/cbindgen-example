@@ -34,7 +34,9 @@ extern "C" {
 
 void test_hello();
 
-void print_strings(VecWrapper<const char*> strings);
+void print_strings_from_value(VecWrapper<const char*> strings);
+
+void print_strings_from_pointer(const VecWrapper<const char*> *strings);
 
 void _dummy(const StructA *a, const StructB *b);
 

@@ -14,9 +14,9 @@ Basic `extern` functions and `repr[C]` structs.
 ## CMakeLists.txt
 You can explore the CMakeLists.txt file in the root of the repository to see how to:  
 
-1. Build a static library (in Linux, a .a file) from the Rust code using Cargo.  
+1. Build a static library (in Linux, `.a` archive library file) from the Rust code using Cargo.  
 2. Generate a header file using cbindgen.   
-3. Link the generated static library to create an executable.  
+3. Link the generated static library to create an executable.   
 
 ## Manipulating the generated header to avoid compile error
 Since `cbindgen` doesn't currently add forward declarations, you might encounter compile errors as your header file becomes larger and more complex.  
